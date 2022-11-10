@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Link from 'next/link';
 import { gql } from '@apollo/client';
 import client from './api/client';
+import { GET_POSTS } from '../queries/post/get-posts';
 
 
 export async function getStaticProps(
@@ -13,19 +14,9 @@ export async function getStaticProps(
   // query  : request dada or get data
   // muntation : post data 
   //
-  const WPQL_REQUEST_URL ={query:gql`
-  query allPosts {
-    posts{
-      nodes{
-        id
-        slug
-        title
-      }
-    }
-  }
-  `};
-  /// fetch data fro mwordpress 
- const {data}= await client.query(WPQL_REQUEST_URL);
+
+  /// fetch data fro Wordpress 
+ const {data}= await client.query({query:GET_POSTS});
  
  let dataQuery = data.posts.nodes;
   // console.log(dataQuery);

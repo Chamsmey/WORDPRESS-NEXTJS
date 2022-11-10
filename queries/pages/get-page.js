@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
 
-const GET_PAGE =
+export const GET_PAGE =
     gql`
     query GET_PAGE($uri:String){
        page:pageBy(uri:$uri) {
@@ -13,4 +13,15 @@ const GET_PAGE =
     `
 
  
-export default GET_PAGE;
+export const GET_PATHS = 
+gql`
+query GET_PATHS {
+    pages {
+            nodes{
+                id
+                title
+                uri
+            }
+    }
+}
+`
